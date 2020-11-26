@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="defaults.css">
+    <link rel="stylesheet" type="text/css" href="demo.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="accordion.js"></script>
+    <title>JIRA Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        th {
+            text-align: left;
+            font-size: 0.830em;
+        }
+
+        td {
+            font-size: 0.780em;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a.issue-link:hover {
+            color: gray;
+        }
+
+        p {
+            margin: 5px 0 5px 0;
+            line-height: 25px;
+            font-size: 0.780em;
+        }
+    </style>
+</head>
+<body ng-app="jiraReport" ng-controller="reportController">
+
+<div class="main">
+    <div class="accordion">
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#accordion-1">Summary of Workload</a>
+            <div id="accordion-1" class="accordion-section-content">
+                <p><b>Lead Projects:</b> {{totalProjects}}</p>
+                <p><b>Assigned Issues:</b> {{totalIssues}}</p>
+            </div><!--end .accordion-section-content-->
+        </div><!--end .accordion-section-->
+
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#accordion-2">Lead Projects</a>
+            <div id="accordion-2" class="accordion-section-content">
+                <p ng-repeat="project in leadProjects track by $index">{{project}}</p>
+            </div><!--end .accordion-section-content-->
+        </div><!--end .accordion-section-->
+
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#accordion-3">Issues</a>
+            <div id="accordion-3" class="accordion-section-content">
+                <div id="issuesTable">
+                    <table style="width: 100%;">
+                        <tr>
+                            <th>Key</th>
+                            <th>ID</th>
+                        </tr>
+                        <tr ng-repeat="issue in issues track by $index">
+                            <td class="issue-link"><a class="issue-link" href="http://jira.laurentian.ca:8080/browse/{{issue.key}}" target="_blank">{{issue.key}}</a></td>
+                            <td class="issue-link"><a class="issue-link" href="http://jira.laurentian.ca:8080/browse/{{issue.key}}" target="_blank">{{issue.id}}</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div><!--end .accordion-section-content-->
+        </div><!--end .accordion-section-->
+    </div><!--end .accordion-->
+</div>
+
+<script src="reportController.js"></script>
+
+</body>
+</html>
