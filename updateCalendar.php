@@ -75,7 +75,7 @@ echo $access_token;
 
 
 $event = new Google_Service_Calendar_Event(array(
-  'summary' => 'Google I/O 2018',
+  'summary' => 'Google I/O 2020',
   'location' => '800 Howard St., San Francisco, CA 94103',
   'description' => 'A chance to hear more about Google\'s developer products.',
   'start' => array(
